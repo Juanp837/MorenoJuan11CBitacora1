@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitácora Juan Moreno</title>
+    <title>Bitácora Sebastián Mérida</title>
+    <link rel="icon" href="recursos/img/LCB.png" type="image/png">
     <style>
         html, body{
             height: 100%;
@@ -15,123 +16,257 @@
             flex-direction: column;
             text-align: center;
         }
-        header {
-            padding: 50px 20px;
-            background-color: #398c37;
-            color: white;
-            box-shadow: 0 4px 10px rgba(194, 62, 62, 0.3);}
-        h1 {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-            border-right: .15em solid #7126bb;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-           
-            text-shadow:
-                0 0 5px #fff,
-                0 0 10px #7126bb,
-                0 0 20px #7126bb,
-                0 0 40px #7126bb;
-           
-            animation:
-                typing 3.5s steps(35, end),
-                blink-caret .75s step-end infinite;
+        header{
+            padding: 20px;
+            background-color: orange;
+            color: antiquewhite;
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #7126bb; }
-        }
-       
         main{
             flex: 1;
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: aliceblue;
         }
-        .card {
-            background: rgb(206, 40, 40);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(13, 104, 202, 0.1);
-            border-left: 6px solid #5198bf;
-            margin-top: 20px;
-            text-align: left;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .tarjeta-semana {
-        display: flex;
-        gap: 20px; /* Espacio entre el PDF y el texto */
-        align-items: flex-start; /* Alinea el contenido arriba */
-        }
-        .pdf-container {
-        flex: 1;
-        min-width: 300px;
-        }
-        .texto-container {
-        flex: 1;
-        }
-        @media (max-width: 768px) {
-        .tarjeta-semana {
-        flex-direction: column;
-        }
-        .pdf-container {
-        width: 100%;
-        }
-        }  
-        .card:hover {
-        transform: scale(1.03); /* Crece un 3% */
-        box-shadow: 0 10px 25px rgba(50, 188, 200, 0.2); /* Sombra más profunda y morada */
-        cursor: pointer;
-        }
-       
         footer{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
-            border-top: 2px solid rgb(75, 89, 181);
-            background-color: rgb(11, 162, 51);
-            font-weight: bold;}
-        footer img {
-            transition: transform 0.3s ease, filter 0.3s ease;
-            cursor: pointer;
+            padding: 15px;
+            border-top: 1px solid orange;
+            background-color: cornsilk;
+        }
+        @media(max-width: 600px){
+            footer{
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+        }
+        header h1{
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        footer img:hover {
-            transform: scale(1.25); /* Efecto Zoom */
-            filter: brightness(1.1); /* Un toque de brillo extra */
+        /* --- ESTILOS PARA LAS TARJETAS (GRID DE BITÁCORA) --- */
+        .bitacora-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
-       
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 5px solid orange;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Contenedor multimedia adaptable */
+        .media-container {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+        }
+
+        /* Estilo para la imagen previa del PDF */
+        .media-container img {
+            width: 100%;
+            height: 180px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+
+        .media-container a:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Estilo para Videos */
+        .media-container iframe, 
+        .media-container video {
+            width: 100%;
+            height: 180px;
+            border: none;
+        }
+
+        /* Estilo para mostrar documentos PDF en texto */
+        .pdf-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #fff3e0;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #d84315;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .pdf-box:hover {
+            background-color: #ffe0b2;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: auto;
+            color: orange;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Bitácora Segunda y Tercera Unidad</h1>
+        <h1>Bitácora segunda y tercera Unidad</h1>
     </header>
     <main>
-        <div class="card tarjeta-semana">
-    <div class="pdf-container">
-        <embed src="file:///C:/Users/Alumno%20Capouilliez/Downloads/Introducci%C3%B3n%20Arduino%201.pdf" type="application/pdf" width="100%" height="400px" />
-    </div>
+        <h2>Mis 7 Trabajos de la Unidad</h2>
+        
+        <!-- Contenedor de las Tarjetas -->
+        <div class="bitacora-grid">
+            
+            <!-- Trabajo 1: PDF con IMAGEN PREVIA -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 1: Semana 1</h3>
+                    <p>Documento de la primera semana. Haz clic en la imagen previa para abrir el PDF completo.</p>
+                    
+                    <!-- Contenedor de la imagen que actúa como enlace al PDF -->
+                    <div class="media-container">
+                       <a href="recursos/pdf/trabajo5.pdf" target="_blank" class="pdf-box">
+                        📄 Ver reporte en PDF
+                    </a>
+                </div>
+                <a href="recursos/pdf/trabajo5.pdf" target="_blank" class="card-link">Ver archivo &rarr;</a>
+            </div>
+        </div>
+            <!-- Trabajo 2: Ejemplo con PDF (Estándar) -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 2: Semana 2</h3>
+                    <p>Investigación detallada guardada en formato PDF.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="SEMANA 2.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+            </div>
+            </div>
 
-    <div class="texto-container">
-        <h3>S1 Introducción a Arduino</h3>
-        <p>Arduino es una plataforma de código abierto que está basada en hardware y software.</p>
-        <ul>
-            <li>Tipos de Arduinos</li>
-            <li>Partes del Arduino UNO</li>
-        </ul>
-    </div>
+            <!-- Trabajo 3: Ejemplo con VIDEO (YouTube) -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 3: Semana 3</h3>
+                    <p>Video explicativo sobre el proyecto desarrollado.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="semana 33.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                </div>
+                <a href="https://www.youtube.com" target="_blank" class="card-link">Ver en YouTube &rarr;</a>
+            </div>
+
+            <!-- Trabajo 4: Ejemplo con IMAGEN -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 4: Semana 4</h3>
+                    <p>Evidencia visual de la estructura y programación realizada.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="semana 6.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+            </div>
+            </div>
+            <!-- Trabajo 5: Ejemplo con PDF -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 5: Semana 5</h3>
+                    <p>Informe paso a paso de los resultados obtenidos en la práctica.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="semana 6.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+            </div>
+            </div>
+            <!-- Trabajo 6: Ejemplo con VIDEO local -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 6: Semana 6</h3>
+                    <p>Demostración en video del funcionamiento del sistema.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="semana 6.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                </div>
+                <a href="#" class="card-link">Ver trabajo &rarr;</a>
+            </div>
+
+            <!-- Trabajo 7: Ejemplo con Imagen/Proyecto Final -->
+            <div class="card">
+                <div>
+                    <h3>Trabajo 7: Semana 7</h3>
+                    <p>se programo el sensor PIR.</p>
+                    <div class="media-container">
+                        <video controls>
+                            <source src="semana 7.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                </div>
+                <a href="#" class="card-link">Ver proyecto final &rarr;</a>
+            </div>
+
+        </div>
     </main>
     <footer>
-        <span>@Juanp_mh_</span>
-        <img src="https://www.capouilliez.edu.gt/assets/img/logo.png" height="25" width="100">
+        <samp>@meridass_</samp>
+        <img src="https://www.capouilliez.edu.gt/assets/img/logo.png" height="50" width="200" alt="Logo Colegio">
     </footer>
 </body>
 </html>
